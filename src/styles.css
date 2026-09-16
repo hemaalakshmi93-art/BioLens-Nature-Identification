@@ -1,0 +1,321 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * BioLens design system — soft green + cream.
+ * All colors are oklch tokens; components only use semantic classes.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-sans: "Manrope", "Noto Sans Tamil", system-ui, sans-serif;
+  --font-tamil: "Noto Sans Tamil", "Manrope", system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  --color-leaf: var(--leaf);
+  --color-leaf-soft: var(--leaf-soft);
+  --color-moss: var(--moss);
+  --color-cream: var(--cream);
+  --color-sun: var(--sun);
+  --color-sun-soft: var(--sun-soft);
+  --color-petal: var(--petal);
+  --color-petal-soft: var(--petal-soft);
+  --color-sky: var(--sky);
+  --color-sky-soft: var(--sky-soft);
+  --color-bark: var(--bark);
+  --color-bark-soft: var(--bark-soft);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+
+  --shadow-soft: 0 1px 2px oklch(0.35 0.06 150 / 0.06), 0 8px 24px -8px oklch(0.35 0.06 150 / 0.12);
+  --shadow-lift: 0 2px 4px oklch(0.35 0.06 150 / 0.08), 0 18px 40px -12px oklch(0.35 0.06 150 / 0.22);
+  --shadow-glow: 0 0 0 6px oklch(0.55 0.13 150 / 0.14);
+
+  --animate-fade-up: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-scan: scan 1.6s ease-in-out infinite;
+  --animate-pulse-soft: pulse-soft 1.8s ease-in-out infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+  @keyframes scan {
+    0% {
+      top: 0%;
+      opacity: 0;
+    }
+    15% {
+      opacity: 1;
+    }
+    85% {
+      opacity: 1;
+    }
+    100% {
+      top: 100%;
+      opacity: 0;
+    }
+  }
+  @keyframes pulse-soft {
+    0%,
+    100% {
+      opacity: 0.55;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+}
+
+:root {
+  --radius: 1rem;
+  --background: oklch(0.985 0.012 95);
+  --foreground: oklch(0.24 0.035 150);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.24 0.035 150);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.24 0.035 150);
+  --primary: oklch(0.47 0.11 152);
+  --primary-foreground: oklch(0.985 0.012 95);
+  --secondary: oklch(0.94 0.03 140);
+  --secondary-foreground: oklch(0.32 0.06 150);
+  --muted: oklch(0.955 0.015 110);
+  --muted-foreground: oklch(0.5 0.03 145);
+  --accent: oklch(0.92 0.05 140);
+  --accent-foreground: oklch(0.3 0.07 150);
+  --destructive: oklch(0.58 0.2 25);
+  --destructive-foreground: oklch(0.985 0.012 95);
+  --border: oklch(0.9 0.02 120);
+  --input: oklch(0.9 0.02 120);
+  --ring: oklch(0.6 0.12 150);
+
+  --leaf: oklch(0.6 0.14 148);
+  --leaf-soft: oklch(0.93 0.05 145);
+  --moss: oklch(0.36 0.07 152);
+  --cream: oklch(0.975 0.02 95);
+  --sun: oklch(0.8 0.15 85);
+  --sun-soft: oklch(0.95 0.06 90);
+  --petal: oklch(0.66 0.18 15);
+  --petal-soft: oklch(0.94 0.04 15);
+  --sky: oklch(0.65 0.11 235);
+  --sky-soft: oklch(0.94 0.03 235);
+  --bark: oklch(0.5 0.07 55);
+  --bark-soft: oklch(0.94 0.03 70);
+  --success: oklch(0.55 0.13 150);
+  --success-foreground: oklch(0.985 0.012 95);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(60% 40% at 100% 0%, oklch(0.93 0.05 145 / 0.6), transparent 70%),
+      radial-gradient(50% 35% at 0% 100%, oklch(0.95 0.06 90 / 0.5), transparent 70%);
+    background-attachment: fixed;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-ring);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+}
+
+@utility tamil {
+  font-family: var(--font-tamil);
+  font-weight: 500;
+}
+
+@utility card-soft {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-soft);
+}
+
+@utility card-hover {
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lift);
+    border-color: var(--color-leaf);
+  }
+}
+
+@utility btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  padding: 0.85rem 1.6rem;
+  font-weight: 600;
+  color: var(--color-primary-foreground);
+  background-image: linear-gradient(135deg, oklch(0.55 0.13 150), oklch(0.42 0.1 155));
+  box-shadow: 0 10px 24px -10px oklch(0.47 0.11 152 / 0.7);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px -10px oklch(0.47 0.11 152 / 0.8);
+    filter: brightness(1.05);
+  }
+  &:active {
+    transform: translateY(0);
+  }
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+@utility btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  padding: 0.85rem 1.5rem;
+  font-weight: 600;
+  color: var(--color-secondary-foreground);
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-soft);
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+  &:hover {
+    transform: translateY(-2px);
+    background-color: var(--color-secondary);
+    border-color: var(--color-leaf);
+  }
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+@utility chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 9999px;
+  padding: 0.45rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-card);
+  color: var(--color-muted-foreground);
+  transition: all 0.2s ease;
+  &:hover {
+    border-color: var(--color-leaf);
+    color: var(--color-foreground);
+  }
+}
+
+@utility chip-active {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+  &:hover {
+    color: var(--color-primary-foreground);
+  }
+}
+
+@utility eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+/* Leaflet popup theming */
+.leaflet-popup-content-wrapper {
+  border-radius: var(--radius-xl) !important;
+  box-shadow: var(--shadow-lift) !important;
+  padding: 0 !important;
+  overflow: hidden;
+}
+.leaflet-popup-content {
+  margin: 0 !important;
+  width: 220px !important;
+}
+.leaflet-container {
+  font-family: var(--font-sans) !important;
+}
